@@ -22,7 +22,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             '/project-image/tictactoe': 'images/tictactoe.png'
         }
 
-        if self.path == '/profile-image':
+        if self.path == '/profile-image' or self.path == '/api/profile-image':
             try:
                 # Fetch from Google Drive
                 with urllib.request.urlopen(DRIVE_URL) as response:
