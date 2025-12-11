@@ -1417,3 +1417,16 @@ footer {
         margin-left: 0;
     }
 }
+
+/* Top Scroll Line */
+#top-scroll-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #ffe100;
+    /* Pure Yellow */
+    z-index: 10000;
+    transition: width 0.1s linear;
+}

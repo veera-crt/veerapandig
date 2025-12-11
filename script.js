@@ -141,3 +141,15 @@ window.addEventListener('load', () => {
         }, 150); // Slow speed for satisfaction
     };
 });
+
+// Top Scroll Line Function
+function updateTopScrollLine() {
+    const scrollLine = document.getElementById('top-scroll-line');
+    if (scrollLine) {
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        scrollLine.style.width = `${progress}%`;
+    }
+}
+
+window.addEventListener('scroll', updateTopScrollLine);
