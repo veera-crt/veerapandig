@@ -1516,6 +1516,8 @@ footer {
     .hamburger {
         display: block;
         z-index: 1001;
+        margin-left: auto;
+        /* Push to right if logo missing or otherwise */
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -1533,23 +1535,34 @@ footer {
     .nav-links {
         position: fixed;
         left: -100%;
-        top: 70px;
-        /* Below navbar */
+        top: 0;
+        /* Full screen menu from top */
+        height: 100vh;
         flex-direction: column;
-        background-color: rgb(5, 5, 5);
+        justify-content: center;
+        /* Center items vertically */
+        background-color: rgba(5, 5, 5, 0.98);
         /* Solid dark bg */
         width: 100%;
         text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-        gap: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s ease-in-out;
+        box-shadow: none;
+        padding: 0;
+        gap: 3rem;
         z-index: 999;
     }
 
     .nav-links.active {
         left: 0;
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-link {
+        font-size: 2rem;
+        /* Larger font for mobile menu */
     }
 
     /* Remove the centering translate on mobile since it's full width/custom */
