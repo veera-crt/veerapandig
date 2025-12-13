@@ -1239,18 +1239,18 @@ footer {
     top: 50%;
     left: 0;
     width: 100%;
-    transform: translateY(-50%) rotate(-5deg);
+    transform: translateY(-50%);
     /* Slight tilt for dynamism */
-    display: flex;
-    flex-direction: column;
-    gap: 15rem;
-    /* SIGNIFICANTLY INCREASED DISTANCE */
-    /* Hiding effect on sides */
+    /* Removed flex column to allow overlap */
+    height: 300px;
+    /* Define height for container */
+    overflow: visible;
     /* Hiding effect on sides */
     mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
     opacity: 0.35;
     /* Decreased opacity */
+    pointer-events: none;
 }
 
 .scrolling-text-row {
@@ -1259,6 +1259,12 @@ footer {
     white-space: nowrap;
     width: max-content;
     padding-right: 4rem;
+    position: absolute;
+    /* Overlap on same level */
+    top: 50%;
+    left: 0;
+    margin-top: -6rem;
+    /* Half of approx font-size to center */
 }
 
 .scrolling-text-row span {
@@ -1536,20 +1542,22 @@ footer {
         position: fixed;
         left: -100%;
         top: 0;
-        /* Full screen menu from top */
         height: 100vh;
+        display: flex;
+        /* Enforce flex */
         flex-direction: column;
         justify-content: center;
-        /* Center items vertically */
         background-color: rgba(5, 5, 5, 0.98);
-        /* Solid dark bg */
         width: 100%;
         text-align: center;
-        transition: 0.3s ease-in-out;
+        transition: left 0.3s ease-in-out;
+        /* Specific transition */
         box-shadow: none;
         padding: 0;
         gap: 3rem;
         z-index: 999;
+        /* Ensure no transform interferes */
+        transform: none !important;
     }
 
     .nav-links.active {
