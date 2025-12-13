@@ -21,8 +21,22 @@ window.toggleGrades = function (btn) {
 
 
 
-// Mobile Menu Toggle logic
-// (Note: HTML for hamburger is there, need to add logic if expanded nav implementation is desired)
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }));
+}
 
 // Smooth Scroll for Anchor Links (Enhancement)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

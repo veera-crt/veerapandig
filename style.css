@@ -1418,6 +1418,47 @@ footer {
     }
 }
 
+/* Red Alert Styling */
+.alert-overlay-red {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.4);
+    z-index: 9999;
+    pointer-events: none;
+    animation: flash-red 0.5s ease-in-out 3;
+    display: none;
+}
+
+.alert-overlay-red.active {
+    display: block;
+}
+
+@keyframes flash-red {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Chat Alert Message Style */
+.message.bot.alert-red {
+    border: 1px solid red;
+    color: #ff4d4d;
+}
+
+.message.bot.alert-sound {
+    border: 1px solid orange;
+    color: #ffca28;
+}
+
 /* Top Scroll Line */
 #top-scroll-line {
     position: fixed;
@@ -1426,7 +1467,174 @@ footer {
     width: 0%;
     height: 5px;
     background-color: #ffe100;
+
     /* Pure Yellow */
     z-index: 10000;
     transition: width 0.1s linear;
+}
+
+/* Responsive Design & Media Queries */
+
+/* Hamburger Menu Base Styles */
+.hamburger {
+    display: none;
+    /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        /* Smaller glitch text */
+    }
+
+    .about-section,
+    .resume-section,
+    .projects-section,
+    .contact-section {
+        padding: 5rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Navbar Mobile */
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        /* Below navbar */
+        flex-direction: column;
+        background-color: rgb(5, 5, 5);
+        /* Solid dark bg */
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+        gap: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* Remove the centering translate on mobile since it's full width/custom */
+    .nav-links {
+        transform: none;
+    }
+
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .subtitle-wrapper {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero-socials {
+        gap: 1rem;
+    }
+
+    .hero-socials a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+
+    /* About Section */
+    .about-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-text {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Grids to Single Column */
+    .resume-grid,
+    .projects-grid,
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact Section */
+    .contact-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Footer Marquee */
+    .footer-scrolling-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .about-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+    }
 }

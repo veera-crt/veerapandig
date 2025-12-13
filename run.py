@@ -1,12 +1,40 @@
+import sys
+if sys.version_info < (3, 10):
+    try:
+        import importlib.metadata
+        import importlib_metadata
+        if not hasattr(importlib.metadata, 'packages_distributions'):
+            importlib.metadata.packages_distributions = importlib_metadata.packages_distributions
+    except ImportError:
+        pass
+
 import http.server
 import socketserver
 import webbrowser
 import os
+import json
+import urllib.request
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 PORT = 8000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-import urllib.request
+# Fetch Sheet Data (Keeping this as it was for Blog/External data display, strictly removing AI chat)
+SHEET_URL = os.getenv("SHEET_URL")
+SHEET_DATA = ""
+if SHEET_URL:
+    try:
+        response = requests.get(SHEET_URL)
+        if response.status_code == 200:
+            SHEET_DATA = response.text
+            print("Successfully loaded sheet data")
+        else:
+            print(f"Failed to load sheet data: {response.status_code}")
+    except Exception as e:
+        print(f"Error loading sheet data: {e}")
 
 FILE_ID = '1K3WxLCb-yVxLNJvxeYrNEjbZ3L1RPY5Y'
 DRIVE_URL = f'https://drive.google.com/uc?export=view&id={FILE_ID}'
@@ -14,6 +42,7 @@ DRIVE_URL = f'https://drive.google.com/uc?export=view&id={FILE_ID}'
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
+
 
     def do_GET(self):
         project_images = {
